@@ -15,7 +15,7 @@ app.use(json());
 app.use(boom());
 app.use(morgan('tiny'));
 app.use(express.static('public'));
-app.use('/swagger', swaggerUi.serve, swaggerUi.setup(undefined, { swaggerOptions: { url: '/swagger.json', } }));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(undefined, { swaggerOptions: { url: '/swagger.json', } }));
 app.use('/api/v1', Router);
 app.use('/', (req, res) => {
   res.send('<a href="/swagger">Swagger API</a>');

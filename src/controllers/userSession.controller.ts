@@ -40,7 +40,7 @@ export async function get(token: string): Promise<ISessionDetailPayload> {
   try {
     const session: any = await UserSession.findOne({ where: { token } });
     return object.camelize(session);
-  } catch (err) {
+  } catch (err: any) {
     if (err.message === ErrorType.NO_ROWS_UPDATED_ERROR) {
       throw new ForbiddenError('Session not maintained');
     }
@@ -58,7 +58,7 @@ export async function remove(token: string): Promise<ISessionDetailPayload> {
   try {
     const session: any = await UserSession.update({ isActive: false }, { where: { token, isActive: true } });
     return object.camelize(session);
-  } catch (err) {
+  } catch (err: any) {
     if (err.message === ErrorType.NO_ROWS_UPDATED_ERROR) {
       throw new ForbiddenError('Session not maintained');
     }
